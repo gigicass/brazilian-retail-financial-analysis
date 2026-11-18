@@ -1,4 +1,9 @@
-data/
+# Data: ignore everything except the small final table used by the dashboard
+data/*
+!data/processed/
+data/processed/*
+!data/processed/ratios.csv
+
 .venv/
 CLAUDE.md
 __pycache__/
