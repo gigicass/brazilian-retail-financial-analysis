@@ -1,14 +1,23 @@
+"""Download and extract CVM DFP annual files.
+
+Source: https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DADOS/
+Output: data/raw/ (zip files and the CSVs extracted from them)
+
+Run from the project root:  python src/download_dfp.py
+"""
+
 import zipfile
 from pathlib import Path
 
 import requests
 
 BASE_URL = "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DADOS/"
-YEARS = range(2021, 2026) 
+YEARS = range(2021, 2026)  # 2021 to 2025 (the end of a range is not included)
 RAW_DIR = Path("data") / "raw"
 
 
 def download_zip(year):
+    """Download the DFP zip file for one year and return its local path."""
     file_name = f"dfp_cia_aberta_{year}.zip"
     url = BASE_URL + file_name
     zip_path = RAW_DIR / file_name
@@ -28,6 +37,7 @@ def download_zip(year):
 
 
 def extract_zip(zip_path):
+    """Extract all CSV files from a zip into RAW_DIR."""
     with zipfile.ZipFile(zip_path) as z:
         z.extractall(RAW_DIR)
     print(f"Extracted {zip_path.name}")

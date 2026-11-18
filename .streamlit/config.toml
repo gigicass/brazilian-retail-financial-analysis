@@ -1,0 +1,3 @@
+[theme]
+# Neutral accent: red would read as "bad" in a financial dashboard
+primaryColor = "#52514e"
